@@ -34,6 +34,7 @@ public class ClientFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
+
             ClientCommunicationThread clientCommunicationThread = new ClientCommunicationThread(socket, getActivity(), handler, wordEditText, sendButton, clientHistoryTextView);
             clientCommunicationThread.start();
         }

@@ -54,13 +54,10 @@ public class ServerThread extends Thread {
                 // TODO exercise 5c
                 // simulate the fact the communication routine between the server and the client takes 3 seconds
 
-                PrintWriter printWriter = Utilities.getWriter(socket);
-                printWriter.println(serverTextEditText.getText().toString());
-                socket.close();
-                Log.v(Constants.TAG, "Connection closed");
 
                 // TODO exercise 5d
                 // move the communication routine between the server and the client on a separate thread (each)
+                new CommunicationThread(socket, serverTextEditText).start();
 
             }
         } catch (IOException ioException) {

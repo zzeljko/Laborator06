@@ -60,6 +60,17 @@ public class ClientCommunicationThread extends Thread {
             PrintWriter requestPrintWriter = Utilities.getWriter(socket);
 
             // TODO exercise 7b
+            String message = wordEditText.getText().toString();
+            if (message.length() > 2)
+                requestPrintWriter.println(message);
+
+            String receivedMessage = responseReader.readLine();
+            if (receivedMessage.equals(Constants.END_GAME)) {
+                clientHistoryTextView.setText("S-a terminat jocul!");
+            } else {
+                clientHistoryTextView.setText(receivedMessage);
+                wordEditText.setText(receivedMessage.substring(0, 2));
+            }
 
         } catch (IOException ioException) {
             Log.e(Constants.TAG, "An exception has occurred: " + ioException.getMessage());
